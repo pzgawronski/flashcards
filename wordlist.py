@@ -1,7 +1,8 @@
 import pandas as pd
 
 raw_words = pd.read_csv("data/french_words.csv")
-words = [(raw_words.French[index], raw_words.English[index]) for index in range(len(raw_words))]
+words = raw_words.to_dict(orient="records")
 
 if __name__ == "__main__":
-    print(words)
+    for pair in words:
+        print(pair)
