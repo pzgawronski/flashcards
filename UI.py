@@ -1,5 +1,5 @@
 import tkinter as tk
-from wordlist import words
+from wordlist import words, save
 from random import choice
 
 # Constants
@@ -27,6 +27,12 @@ def reverse_flashcard():
     canvas_flashcard.itemconfig(word_text, text=current_pair["English"], fill="white")
 
 
+def learn_flashcard():
+    global words, current_pair
+    words.remove(current_pair)
+    update_flashcard()
+
+
 # Main window
 window_main = tk.Tk()
 window_main.title("Flashcards")
@@ -47,10 +53,11 @@ canvas_flashcard.grid(column=0, row=0, columnspan=2)
 update_flashcard()
 
 # Buttons
-button_y = tk.Button(image=image_button_y, bd=0, highlightthickness=0, relief="flat", command=update_flashcard)
+button_y = tk.Button(image=image_button_y, bd=0, highlightthickness=0, relief="flat", command=learn_flashcard)
 button_y.grid(column=1, row=1)
 
 button_n = tk.Button(image=image_button_n, bd=0, highlightthickness=0, relief="flat", command=update_flashcard)
 button_n.grid(column=0, row=1)
 
 window_main.mainloop()
+save()
