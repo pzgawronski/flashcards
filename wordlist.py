@@ -1,5 +1,7 @@
 import pandas as pd
 
+raw_words = {}
+
 try:
     raw_words = pd.read_csv("data/to_learn.csv")
 except FileNotFoundError:
